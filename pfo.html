@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjey S | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+            margin: 0;
+           padding: 0;
+         background-color: #000;
+            color: white;
+           font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+  nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        padding: 20px;
+            background-color: transparent;
+        position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        nav.sticky {
+            background-color: rgba(0, 0, 0, 0.8);
+           transform: translateY(0);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+        color: white;
+        }
+
+        nav ul {
+            list-style: none;
+         display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+      text-decoration: none;
+            font-size: 16px;
+            position: relative;
+         overflow: hidden;
+            padding: 10px 0;
+        }
+
+        nav a::before {
+            content: "";
+       position: absolute;
+            bottom: 0;
+        left: 50%;
+            width: 100%;
+            height: 2px;
+       background: white;
+            transform: translateX(-50%) scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        nav a:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        nav a:hover {
+            color: #6c63ff;
+            font-weight: bold;
+           transform: translateY(-2px);
+        }
+  .background {
+           position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+       height: 100%;
+            overflow: hidden;
+           z-index: -1;
+        }
+
+        .shape {
+         position: absolute;
+            width: 400px;
+      height: 400px;
+            background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            animation: float 10s infinite;
+        }
+
+        .shape:nth-child(1) {
+            left: -100px;
+         top: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            right: -100px;
+            bottom: -100px;
+           animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            left: 50%;
+            bottom: -200px;
+       animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+        }
+
+        .section {
+            padding: 120px 50px 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background-color: #333;
+            width: 300px;
+        padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            perspective: 1000px;
+            position: relative;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card h3 {
+            margin-top: 10px;
+            font-size: 24px;
+            color: #6c63ff;
+        }
+
+      
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+          margin-top: 50px;
+            perspective: 1000px;
+        }
+
+        .skill-item {
+            background-color: #333;
+           padding: 20px;
+        border-radius: 10px;
+            text-align: center;
+           cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .skill-item:hover {
+            transform: rotateY(180deg);
+        }
+
+        .skill-front, .skill-back {
+            position: absolute;
+            top: 0;    left: 0;
+            width: 100%;
+      height: 100%;
+        backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .skill-back {
+            background-color: #6c63ff;
+            transform: rotateY(180deg);
+        }
+        .skill-circle {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .circle {
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            stroke-width: 10;
+       stroke: white;
+            fill: none;
+            animation: progress 2s forwards;
+        }
+
+        .circle-bg {
+            stroke: #555;
+            stroke-width: 10;
+            fill: none;
+        }
+
+        .percentage {
+   position: absolute;
+            top: 50%;
+         left: 50%;
+            transform: translate(-50%, -50%);
+           font-size: 20px;
+            font-weight: bold;
+        }
+
+        @keyframes progress {
+            to {
+                stroke-dashoffset: calc(440 - (440 * 80) / 100); /* 80% skill proficiency */
+            }
+        }
+
+      
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+      gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            background-color: #222;
+            color: white;
+            transition: background-color 0.3s, border 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            background-color: #333;
+            border: 1px solid #6c63ff;
+        }
+
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: white;
+            color: black;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body>
+
+   
+    <nav id="navbar">
+        <div class="logo">Lets's Connect</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    
+    <section class="section" id="home">
+        <div class="hero">
+            <h1 id="dynamicText"></h1>
+            <p id="dynamicSubtitle"></p>
+        </div>
+    </section>
+
+    
+    <section class="section" id="projects">
+        <h2>My Top 3 Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                
+                <h3  style="color: #6c63ff"> 1.OpenWEATHER <br><p style="color:white">The OpenWeather App is your go-to solution for real-time weather data and forecasts. With a user-friendly interface and powerful features, it provides accurate weather information tailored to your location.
+
+                </p></h3>
+            </div>
+            <div class="project-card">
+               
+                <h3 style="color: #6c63ff">
+                  2. SMART-CALC<br>
+                  <p style="color:white">webpage featuring two calculators: a basic calculator and a temperature conversion calculator.</p>
+                </h3>
+            </div>
+            <div class="project-card">
+                
+                <h3 style="color: #6c63ff">
+                  3. STUD-DATA HOLDER<br>
+                <p style="color:white">
+                  Developed a comprehensive webpage that contains detailed information about the 1ST YEAR CSE-C students of our college. Technologies Used: HTML, CSS.This project not only honed my web development skills but also emphasized the importance of data management and user experience.
+                </p></h3>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skill-item">
+           <div class="skill-front">
+                    <div class="skill-circle">
+                 <svg width="100" height="100">
+                          <circle cx="50" cy="50" r="35" class="circle-bg" />
+          <circle cx="50" cy="50" r="35" class="circle" />
+                        </svg>
+                        <div class="percentage">90%</div>
+                    </div>
+                    <p>Web Development</p>
+                </div>
+       <div class="skill-back">
+                    <p>Advanced HTML,CSS,JavaScript</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-front">
+                    <div class="skill-circle">
+                        <svg width="100" height="100">
+                            <circle cx="50" cy="50" r="35" class="circle-bg" />
+                            <circle cx="50" cy="50" r="35" class="circle" />
+                        </svg>
+                        <div class="percentage">70%</div>
+          </div>
+                    <p>Programming Languages</p>
+                </div>
+                <div class="skill-back">
+                    <p>Python,C Programming,Java</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-front">
+                    <div class="skill-circle">
+                        <svg width="100" height="100">
+                            <circle cx="50" cy="50" r="35" class="circle-bg" />
+                            <circle cx="50" cy="50" r="35" class="circle" />
+                        </svg>
+                        <div class="percentage">60%</div>
+                    </div>
+                    <p>Tools</p>
+                </div>
+                <div class="skill-back">
+                    <p>Git Hub and Git</p>
+                </div>
+            </div>
+        </div>
+    </section> <section class="section" id="contact">
+        <h2>Contact Me</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name (Ex: Sanjey.s)" required>
+            <input type="email" placeholder="Your Email (Ex: sanjudote45@gmail.com)" required>
+            <textarea rows="5" placeholder="Your Message (Ex: I need your help !)" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <script>
+       
+        window.onscroll = function() {
+            const navbar = document.getElementById("navbar");
+            if (window.pageYOffset > 100) {
+                navbar.classList.add("sticky");
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        };
+        const titleText = "Hello! I am Sanjey S ,Welcome to My Portfolio";
+        const titleContainer = document.getElementById("dynamicText");
+        const subtitleContainer = document.getElementById("dynamicSubtitle");
+        function animateText(container, text, delay) {
+            const letters = text.split("");
+            container.innerHTML = "";
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    container.innerHTML += letter;
+                }, delay * index);
+            });
+        }
+
+        animateText(titleContainer, titleText, 100); 
+        document.querySelectorAll('.skill-circle').forEach((circle) => {
+            circle.querySelector('svg .circle').style.animation = "progress 2s forwards";
+        });
+        document.querySelector('.contact-form').onsubmit = function(e) {
+            e.preventDefault();
+            alert("Message sent! Thank you for reaching out.");
+            this.reset();
+        };
+    </script>
+</body>
+</html>
